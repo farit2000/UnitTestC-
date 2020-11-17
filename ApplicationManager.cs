@@ -16,13 +16,38 @@ namespace Gruyere
     public class ApplicationManager
     {
         private IWebDriver driver;
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
         public IDictionary<string, object> vars {get; private set;}
         private IJavaScriptExecutor js;
         private LoginHelper auth;
         private NavigationHelper navigation;
         private SnippetHelper snippets;
 
-        public ApplicationManager()
+        public static ApplicationManager GetInstance()
+        {
+            if (!app.IsValueCreated)
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigation.OpenHomePage();
+                app.Value = newInstance;
+            }
+
+            return app.Value;
+        }
+
+        ~ApplicationManager()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception e)
+            {
+                //ignore
+            }
+        }
+
+        private ApplicationManager()
         {
             driver = new ChromeDriver("/Users/faritshamardanov/Downloads");
             js = (IJavaScriptExecutor)driver;

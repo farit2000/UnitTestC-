@@ -11,15 +11,21 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
 
+
+using NUnit.Framework;
+
 namespace Gruyere
 {
-    public class TestBase
+    public class AuthBaseTest : TestBase
     {
-        protected ApplicationManager app;
-        
-        [SetUp]
-        public void SetUp() {
-            app = ApplicationManager.GetInstance();
+        [Test]
+        public void test()
+        {
+            app.Navigation.OpenHomePage();
+            app.Navigation.SetWindowSize();
+            AccountData account = new AccountData("qwerty", "qwerty");
+            app.Auth.SignUp(account);
+            app.Auth.SignIn(account);
         }
     }
 }

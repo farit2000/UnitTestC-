@@ -13,20 +13,12 @@ using NUnit.Framework;
 
 namespace Gruyere
 {
-    public class Tests : TestBase
+    public class SnippetsRefreshTest : TestBase
     {
         [Test]
         public void test()
         {
-            app.Navigation.OpenHomePage();
-            app.Navigation.SetWindowSize();
-            AccountData account = new AccountData("qwerty", "qwerty");
-            app.Auth.SignUp(account);
-            app.Auth.SignIn(account);
-            SnippetData snippet = new SnippetData("Hello world!");
-            app.Snippets.CreateNewSnippet(snippet);
             app.Snippets.RefreshSnippets();
-            app.Snippets.RemoveSnippet();
             app.Navigation.GoToHomePage();
         }
     }

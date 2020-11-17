@@ -37,5 +37,11 @@ namespace Gruyere
             driver.FindElement(By.Name("snippet")).SendKeys(snippet.SnippetText);
             driver.FindElement(By.CssSelector("input")).Click();
         }
+
+        public SnippetData GetSnippetCreatedData()
+        {
+            string snippetText = driver.FindElement(By.Id("0")).Text.Trim(' ');
+            return new SnippetData(snippetText);
+        }
     }
 }
