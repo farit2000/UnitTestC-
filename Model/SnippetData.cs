@@ -2,6 +2,8 @@ namespace Gruyere
 {
     public class SnippetData
     {
+
+        public SnippetData(){}
         public SnippetData(string snippetText)
         {
             SnippetText = snippetText;

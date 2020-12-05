@@ -13,7 +13,7 @@ using NUnit.Framework;
 
 namespace Gruyere
 {
-    public class SnippetsRefreshTest : TestBase
+    public class SnippetsRefreshTest : AuthBase
     {
         [Test]
         public void test()

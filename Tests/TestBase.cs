@@ -20,6 +20,12 @@ namespace Gruyere
         [SetUp]
         public void SetUp() {
             app = ApplicationManager.GetInstance();
+            AccountData account = new AccountData(Settings.Login, Settings.Password);
+        }
+
+        public static string GenerateRandomString(int length)
+        {
+            return "Random string";
         }
     }
 }

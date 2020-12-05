@@ -29,9 +29,14 @@ namespace Gruyere
             driver.FindElement(By.LinkText("Home")).Click();
         }
         
+        public void GoToMySnippets()
+        {
+            driver.FindElement(By.LinkText("My Snippets")).Click();
+        }
+        
         public void OpenHomePage()
         {
-            driver.Navigate().GoToUrl("http://google-gruyere.appspot.com/440653773172947326872184277494671579888/");
+            driver.Navigate().GoToUrl(Settings.BaseURL);
         }
     }
 }

@@ -21,6 +21,14 @@ namespace Gruyere
         }
         public void SignIn(AccountData account)
         {
+            if (IsLoggedIn())
+            {
+                if (IsLoggedIn(account.Username))
+                {
+                    return;
+                }
+                Logout();
+            }
             driver.FindElement(By.LinkText("Sign in")).Click();
             driver.FindElement(By.Name("uid")).Click();
             driver.FindElement(By.Name("uid")).SendKeys(account.Username);
@@ -36,6 +44,34 @@ namespace Gruyere
             driver.FindElement(By.Name("pw")).Click();
             driver.FindElement(By.Name("pw")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("tr:nth-child(4) input")).Click();
+        }
+
+        public void Logout()
+        {
+            if (IsElementPresent(By.LinkText("Sign out")))
+            {
+                driver.FindElement(By.LinkText("Sign out")).Click();
+            }
+        }
+
+        public bool IsLoggedIn()
+        {
+            if (IsElementPresent(By.LinkText("Sign out")))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsLoggedIn(string username)
+        {
+            if (IsElementPresent(By.ClassName("menu-user")))
+            {
+                var logingUserName = driver.FindElement(By.ClassName("menu-user")).Text;
+                logingUserName = logingUserName.Split(" ")[0];
+                return username == logingUserName;
+            }
+            return false;
         }
     }
 }

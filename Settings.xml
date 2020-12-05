@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data>
+    <BaseURL>http://google-gruyere.appspot.com/400886637991855102424723387015064855172/</BaseURL>
+    <Login>qwerty</Login>
+    <InvalidLogin>invalid_login</InvalidLogin>
+    <Password>123456789Test</Password> 
+</Data>
